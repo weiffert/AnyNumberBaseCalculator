@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Personal Links-->
+    <link href='style.css' rel='stylesheet'/>
+</head>
+<body onkeyup="keyUp(event)">
+    <div id="sizing-div">
+        <div id="staging-area" class="container-fluid">
+            <div class="row" id="header">
+                <div class="col-sm-9">
+                    <h3 class="text-right">Calculator
+                    </h3>
+                </div>
+                <div class="col-sm-3">
+                    <h4>
+                        <small class="text-muted">With number bases</small>
+                    </h4>
+                </div>
+            </div>
+            <div class="row currentCalculation" id="calc-0">
+                <div class="col-sm-9">
+                    <p class="text-right shaded"> </p>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <select class="form-control">
+                        <option value=10>Base 10</option>
+                        <option value=2>Base 2</option>
+                        <option value=3>Base 3</option>
+                        <option value=4>Base 4</option>
+                        <option value=5>Base 5</option>
+                        <option value=6>Base 6</option>
+                        <option value=7>Base 7</option>
+                        <option value=8>Base 8</option>
+                        <option value=9>Base 9</option>
+                        <option value=10>Base 10</option>
+                        <option value=11>Base 11</option>
+                        <option value=12>Base 12</option>
+                        <option value=13>Base 13</option>
+                        <option value=14>Base 14</option>
+                        <option value=15>Base 15</option>
+                        <option value=16>Base 16</option>
+                        <option value=17>Base 17</option>
+                        <option value=18>Base 18</option>
+                        <option value=19>Base 19</option>
+                        <option value=20>Base 20</option>
+                        <option value=21>Base 21</option>
+                        <option value=22>Base 22</option>
+                        <option value=23>Base 23</option>
+                        <option value=24>Base 24</option>
+                        <option value=25>Base 25</option>
+                        <option value=26>Base 26</option>
+                        <option value=27>Base 27</option>
+                        <option value=28>Base 28</option>
+                        <option value=29>Base 30</option>
+                        <option value=31>Base 31</option>
+                        <option value=32>Base 32</option>
+                        <option value=33>Base 33</option>
+                        <option value=34>Base 34</option>
+                        <option value=35>Base 35</option>
+                        <option value=36>Base 36</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Functions-->
+    <div id="calculator" class="container-fluid fixed-bottom">
+        <!--row-->
+        <div class="row align-items-center buttons">
+            <div class="col-sm-3" onclick="appendChar('7')"><div class="d-flex justify-content-center align-items-center"><p>7</p></div></div>
+            <div class="col-sm-3" onclick="appendChar('8')"><div class="d-flex justify-content-center align-items-center"><p>8</p></div></div>
+            <div class="col-sm-3" onclick="appendChar('9')"><div class="d-flex justify-content-center align-items-center"><p>9</p></div></div>
+            <div class="col-sm-3" onclick="operation('+')"><div class="d-flex justify-content-center align-items-center"><p>+</p></div></div>
+        </div>
+        <!--row-->
+        <div class="row align-items-center buttons">
+            <div class="col-sm-3" onclick="appendChar('4')"><div class="d-flex justify-content-center align-items-center"><p>4</p></div></div>
+            <div class="col-sm-3" onclick="appendChar('5')"><div class="d-flex justify-content-center align-items-center"><p>5</p></div></div>
+            <div class="col-sm-3" onclick="appendChar('6')"><div class="d-flex justify-content-center align-items-center"><p>6</p></div></div>
+            <div class="col-sm-3" onclick="operation('-')"><div class="d-flex justify-content-center align-items-center"><p>-</p></div></div>
+        </div>
+        <!--row-->
+        <div class="row align-items-center buttons">
+            <div class="col-sm-3" onclick="appendChar('1')"><div class="d-flex justify-content-center align-items-center"><p>1</p></div></div>
+            <div class="col-sm-3" onclick="appendChar('2')"><div class="d-flex justify-content-center align-items-center"><p>2</p></div></div>
+            <div class="col-sm-3" onclick="appendChar('3')"><div class="d-flex justify-content-center align-items-center"><p>3</p></div></div>
+            <div class="col-sm-3" onclick="operation('*')"><div class="d-flex justify-content-center align-items-center"><p>*</p></div></div>
+        </div>
+        <!--row-->
+        <div class="row align-items-center buttons">
+            <div class="col-sm-3" onclick="appendChar('0')"><div class="d-flex justify-content-center align-items-center"><p>0</p></div></div>
+            <div class="col-sm-2" onclick="operation('=')"><div class="d-flex justify-content-center align-items-center"><p>=</p></div></div>
+            <div class="col-sm-2" onclick="popChar()"><div class="d-flex justify-content-center align-items-center"><p>Back</p></div></div>
+            <div class="col-sm-2" onclick="clearEverything()"><div class="d-flex justify-content-center align-items-center"><p>Clear</p></div></div>
+            <div class="col-sm-3" onclick="operation('/')"><div class="d-flex justify-content-center align-items-center"><p>/</p></div></div>
+        </div>
+    </div>
+    
+    <!--Copied from https://getbootstrap.com between comments-->
+    <div class="modal fade" id="resultBaseDialog" tabindex="-1" role="dialog" aria-labelledby="resultBaseDialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Choose Base</h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                        <select class="form-control" id="resultBase">
+                <option value=10>Base 10</option>
+                <option value=2>Base 2</option>
+                <option value=3>Base 3</option>
+                <option value=4>Base 4</option>
+                <option value=5>Base 5</option>
+                <option value=6>Base 6</option>
+                <option value=7>Base 7</option>
+                <option value=8>Base 8</option>
+                <option value=9>Base 9</option>
+                <option value=10>Base 10</option>
+                <option value=11>Base 11</option>
+                <option value=12>Base 12</option>
+                <option value=13>Base 13</option>
+                <option value=14>Base 14</option>
+                <option value=15>Base 15</option>
+                <option value=16>Base 16</option>
+                <option value=17>Base 17</option>
+                <option value=18>Base 18</option>
+                <option value=19>Base 19</option>
+                <option value=20>Base 20</option>
+                <option value=21>Base 21</option>
+                <option value=22>Base 22</option>
+                <option value=23>Base 23</option>
+                <option value=24>Base 24</option>
+                <option value=25>Base 25</option>
+                <option value=26>Base 26</option>
+                <option value=27>Base 27</option>
+                <option value=28>Base 28</option>
+                <option value=29>Base 30</option>
+                <option value=31>Base 31</option>
+                <option value=32>Base 32</option>
+                <option value=33>Base 33</option>
+                <option value=34>Base 34</option>
+                <option value=35>Base 35</option>
+                <option value=36>Base 36</option>
+                    </select>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="continueEvaluation()" >Evaluate</button>
+                  </div>
+              </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <!--Copied from https://getbootstrap.com-->
+    
+    <script src="script.js"></script>
+</body>
+</html>

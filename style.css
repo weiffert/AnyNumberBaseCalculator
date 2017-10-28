@@ -1,0 +1,63 @@
+body, html {
+    height: 100%;
+}
+
+#sizing-div {
+    overflow-y: scroll;
+    height: 50%;
+}
+
+.row.buttons>div {
+    height: 100%;
+    border-width: thick;
+    border-color: #999;
+    background-color: #ccc;
+    border-style: solid;
+}
+
+#calculator {
+    height: 50%;
+}
+
+#calculator>.row {
+    height: 25%;
+}
+
+#other {
+    height: 50%;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+}
+
+#calculationField {
+    height: 50%;
+    overflow-y: scroll;
+}
+
+.shaded {
+    background-color: #ccc;
+    border-radius: 5px;
+    padding: 1% 1.5%;
+    height: 100%;
+    overflow-x: scroll;
+}
+
+.padding {
+    padding: 0 1.5%;
+}
+
+.d-flex {
+    height: 100%;
+}
+
+#header {
+    padding-top: 2%;
+}
+
+.form-group {
+    margin: 0;
+}
