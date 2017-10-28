@@ -4,7 +4,9 @@ var clearAll = false;
 var modalShow = false;
 
 function appendChar(character) {
-    clearAll = false;
+    if(clearAll) {
+        clearEverything();
+    }
     if((focus + 1) % 2 === 0) {
         equation.push("");
         focus++;
@@ -40,6 +42,8 @@ function popChar() {
 }
 
 function operation(character) {
+    clearAll = false;
+    
     if(focus % 2 === 0) {
         equation.push(character);
         focus++;
@@ -71,6 +75,8 @@ function clearEverything() {
     }
     
     equation[focus] = " ";
+    
+    clearAll = false;
     
     updateCurrentCalculation(false);
 }
